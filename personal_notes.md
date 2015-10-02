@@ -44,3 +44,14 @@ From the controller:
 In Phoenix, whenver its possible, we try to limit side effects, those functions that touch and possible change the outside work, to the controller. This may require a change in thought about the model layer, since you will want to seperate code that acutally calls another web server or fetches code from a database, from the code that processes that data.
 
 Process data through the model, read/write data through the controller.
+
+
+Hello World
+-----------
+
+`mix pheonix.new` => rails new
+iex -S mix phoenix.server => rails console
+
+Phoenix Convention!!
+  External Data is unsafe, so in controllers match using the string keys, while internally to phoenix match using atoms.
+
