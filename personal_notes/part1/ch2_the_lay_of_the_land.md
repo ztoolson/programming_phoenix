@@ -69,9 +69,29 @@ lib/hello.endpoint.ex => This file contains a chain of functions (or plugs) that
   |> Plug.Session.call
   |> Hello.Router.call (this is where the request is then routed to a controller action)
 
+An endpoint == plug.
+Your application is just a series of plugs (functions) beginning with an endpoint and ending with a controller.
+
 The Router Flow
 ---------------
 
 made up of:
   1. Pipelines
   2. Route Table
+
+connection
+|> endpoint (functions for every request)
+|> router 
+|> pipeline (connection goes through a named pipeline which will have common functions for each major type of request)
+|> controller (controller will fetch info from the model and render a template through a view)
+
+Follow the request for GET /hello
+
+connection               # Plug.Conn
+|> endpoint              # lib/hello/endpoint.ex
+|> browser               # web/router.ex
+|> HelloController.world # web/controllers/hello_controller.ex
+|> HelloVIew.render(     # web/views/hello_view.ex
+    "world.html")        #  web/templates/hello/world.html.eex
+
+> We’d encourage you instead to stop, and take a look at exactly what happens for each request, from top to bottom.
