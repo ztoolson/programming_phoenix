@@ -55,3 +55,23 @@ iex -S mix phoenix.server => rails console
 Phoenix Convention!!
   External Data is unsafe, so in controllers match using the string keys, while internally to phoenix match using atoms.
 
+_reponse_ is not the return value of a function, a response is just one more action on the connection.
+conn |> ... |> render_response
+  
+lib/hello.endpoint.ex => This file contains a chain of functions (or plugs) that happen at the beginngin of every request.
+  connection
+  |> Plug.Static.call
+  |> Plug.RequestId.call
+  |> Plug.Logger.call
+  |> Plug.Parsers.call
+  |> Plug.MethodOverride.call
+  |> Plug.Head.call
+  |> Plug.Session.call
+  |> Hello.Router.call (this is where the request is then routed to a controller action)
+
+The Router Flow
+---------------
+
+made up of:
+  1. Pipelines
+  2. Route Table
