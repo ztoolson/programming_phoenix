@@ -91,7 +91,19 @@ connection               # Plug.Conn
 |> endpoint              # lib/hello/endpoint.ex
 |> browser               # web/router.ex
 |> HelloController.world # web/controllers/hello_controller.ex
-|> HelloVIew.render(     # web/views/hello_view.ex
+|> HelloView.render(     # web/views/hello_view.ex
     "world.html")        #  web/templates/hello/world.html.eex
 
 > We’d encourage you instead to stop, and take a look at exactly what happens for each request, from top to bottom.
+
+
+Discussion From Book Club
+=========================
+
+How do views fit together with controller? -> Looks like this is answered in Ch.3
+
+Poisen is built in library to JSON
+
+Phoenix for api's?
+Plug = Rack
+Pipelines are Phoenix solution to rails before filter and middleware. It is a good comprimise
