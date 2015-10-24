@@ -14,12 +14,21 @@ defmodule Rumbl.Router do
   end
 
   scope "/", Rumbl do
-    pipe_through :browser # Use the default browser stack
-
-    get "users",     UserController, :index
-    get "users/:id", UserController, :show
+    pipe_through :browser
 
     get "/", PageController, :index
+    # Resources is a shorthand implementation for a common set of actions
+    # This is a macro that defines these other macros (which the define the functions)
+    #
+    # get    "/users",         UserController, :index
+    # get    "/users/:id/edit, UserController, :edit
+    # get    "/users/new",     UserController, :new
+    # get    "/users/:id",     UserController, :show
+    # post   "/users",         UserController, :create
+    # patch  "/users/:id",     UserController, :update
+    # put    "/users/:id",     UserController, :update
+    # delete "/users/:id",     UserController, :delete
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
