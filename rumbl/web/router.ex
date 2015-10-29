@@ -7,6 +7,7 @@ defmodule Rumbl.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Rumbl.Auth, repo: Rumbl.Repo
   end
 
   pipeline :api do
@@ -29,6 +30,7 @@ defmodule Rumbl.Router do
     # put    "/users/:id",     UserController, :update
     # delete "/users/:id",     UserController, :delete
     resources "/users", UserController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
