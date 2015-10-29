@@ -30,6 +30,7 @@ defmodule Rumbl.Router do
     # put    "/users/:id",     UserController, :update
     # delete "/users/:id",     UserController, :delete
     resources "/users", UserController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
