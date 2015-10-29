@@ -13,7 +13,8 @@ defmodule Rumbl.User do
   def changeset(model, params \\ :empty) do
     model
     # cast converts a naked map to an Ecto Model
-    |> cast(params, ~w(name username), []) # used for required and optional fields, similar to rails strong params
+    # cast (model, hash, required params, optional params)
+    |> cast(params, ~w(name username), [])
     |> validate_length(:username, min: 1, max: 20)
   end
 
