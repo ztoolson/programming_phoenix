@@ -31,6 +31,11 @@ defmodule Rumbl.Router do
     # delete "/users/:id",     UserController, :delete
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+  end
+
+  scope "/manage", Rumbl do
+    pipe_through [:browser, :authenticate_user]
+
     resources "/videos", VideoController
   end
 
