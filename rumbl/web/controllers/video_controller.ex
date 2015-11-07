@@ -5,7 +5,9 @@ defmodule Rumbl.VideoController do
   ##
   # Plugs
   #
+  plug :load_categories when action in [:new, :create, :edit, :update]
   plug :scrub_params, "video" when action in [:create, :update]
+
   # Redefine all def new(conn, _) or whatever actiona calls to implicitly pass
   # in the current user
   # def new(conn, params) is now def new(conn, params, current_user)
@@ -89,5 +91,15 @@ defmodule Rumbl.VideoController do
 
   defp user_videos(user) do
     assoc(user, :videos)
+  end
+
+  ##
+  # Function plug defenitions
+  #
+  defp load_categories(conn, _) do
+    categories = Repo.all from(c in Rumbl.Category,
+                          order_by: c.name,
+                          select: {c.name, c.id})
+    assign(conn, :categories, categories)
   end
 end
