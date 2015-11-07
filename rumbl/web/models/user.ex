@@ -10,6 +10,11 @@ defmodule Rumbl.User do
     timestamps
   end
 
+  def update_changeset(model, params \\ :empty) do
+    model
+    |> cast(params, [], ~w(name username))
+  end
+
   def changeset(model, params \\ :empty) do
     model
     # cast converts a naked map to an Ecto Model

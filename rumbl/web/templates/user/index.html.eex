@@ -4,7 +4,12 @@
   <%= for user <- @users do %>
     <tr>
       <td><b><%= render "user.html", user: user %></b></td>
-      <td><%= link "View", to: user_path(@conn, :show, user.id) %></td>
+      <td class="text-right">
+        <%= link "View", to: user_path(@conn, :show, user.id) %>
+        <%= if @conn.assigns.current_user.id == user.id do %>
+          <div><%= link "Edit", to: user_path(@conn, :edit, user.id) %></div>
+        <% end %>
+      </td>
     <tr>
   <% end %>
 </table>
